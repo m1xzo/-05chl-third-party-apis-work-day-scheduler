@@ -4,7 +4,7 @@ var containerEl = $(`.container-lg`);
 
 // Wrap all code that interacts with the DOM in a call to jQuery
 $(function () {
-  
+
   function displayCalendar() {
     // clear calendar on the page
     containerEl.empty();
@@ -35,8 +35,6 @@ $(function () {
     displayTimeBlocks();
     // apply the past, present, or future class to each time-block
     updateTimeBlocks();
-    // update the date every second
-    setInterval(displayDate, 1000);
   }
 
   // Save user input from time-block to localStorage
@@ -46,7 +44,7 @@ $(function () {
     var descriptionInputEl =  $(this).siblings(`.description`).val().trim();
     // get stored time-blocks from localStorage
     var timeBlocks = readTimeBlocksFromStorage();
-    // use the id in the containing time-block as a key to save user input
+    // use id in the containing time-block as a key to save user input
     var key = $(this).parent().attr(`id`);
 
     // remove stored time-block from array if it shares the same key as user input
@@ -163,9 +161,10 @@ $(function () {
       updateTimeBlocks();
     }
   }
-
+  
   // Display the calendar for work day scheduler
-  displayDate();
   displayCalendar();
+  displayDate();
+  setInterval(displayDate, 1000);
   $(`.saveBtn`).on(`click`, handleSave);
 });
